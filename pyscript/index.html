@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>PyScript Playground</title>
+    <link rel="stylesheet" href="./style.css" />
+    <link rel="stylesheet" href="https://pyscript.net/alpha/pyscript.css" />
+    <script defer src="https://pyscript.net/alpha/pyscript.js"></script>
+    <style>
+    </style>
+    <py-env>
+        - matplotlib
+        - numpy
+        - pandas
+    </py-env>
+</head>
+
+<body>
+    <py-title>Pandas Playground</py-title>
+    <label for="cars">Choose a car:</label>
+    <select name="cars" id="cars">
+        <option value="volvo">Volvo</option>
+        <option value="saab">Saab</option>
+        <option value="mercedes">Mercedes</option>
+        <option value="audi">Audi</option>
+    </select>
+    <div class="container">
+        <div class="container-code">
+            <py-script src="./script.py"></py-script>
+            <py-repl std-out="output" std-err="errors" id="output-repl">df.head()</py-repl>
+        </div>
+        <div class="container-results">
+            <b>Initial DataFrame</b>
+            <hr>
+            <div id="initial"></div>
+        </div>
+        <div class="container-warnings">
+            <b>Errors & Warnings</b>
+            <hr>
+            <div id="errors"></div>
+        </div>
+        <div class="container-results">
+            <b>Output</b>
+            <hr>
+            <div id="output"></div>
+        </div>
+        <py-repl std-out="initial" class="hidden" id="initial-repl">df.head()</py-repl>
+    </div>
+    <script defer src="./index.js"></script>
+</body>
+
+</html>
