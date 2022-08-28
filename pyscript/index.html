@@ -19,19 +19,22 @@
 
 <body body class="min-h-screen bg-bgray-200">
     <h1 class="text-bgray-800 text-center font-bold text-4xl pt-8 pb-4">Pandas Cheat Sheet</h1>
-    <div class="flex flex-row mx-auto justify-center">
+    <div class="flex flex-row flex-wrap gap-4 justify-center">
         <div>
             <select id="category"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
                 <option selected="">Choose a category</option>
-                <option value="reshape">Reshape data</option>
                 <option value="subset_rows">Subset rows</option>
                 <option value="subset_cols">Subset columns</option>
+                <option value="subset_rows_cols">Subset rows & columns</option>
+                <option value="reshape">Reshape data</option>
+                <option value="manipulate">Manipulate data</option>
                 <option value="summarize">Summarize data</option>
-                <option value="missing">Missing data</option>
+                <option value="aggregations">Aggregate data</option>
+                <option value="join_df">Join DataFrames</option>
             </select>
         </div>
-        <div class="ml-4">
+        <div>
             <select id="operation"
                 class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block p-2.5">
                 <option selected="">Choose an operation</option>
@@ -83,10 +86,12 @@
             </details>
         </div>
     </div>
-    <py-repl std-out="initial" class="hidden" id="initial-repl">df.head()</py-repl>
+    <py-repl std-out="initial" class="hidden" id="initial-repl">df_initial.head()</py-repl>
     <div class="text-center mb-6" id="footer">
-        <a href="https://twitter.com/_dylancastillo">Built with ❤️ ️by
+        <a href="https://twitter.com/_dylancastillo" class="text-bgray-500">Built with ❤️ ️by
             <span class="underline text-blue-800">@_dylancastillo</span></a>
+        |
+        <a href="" class="text-bgray-500">Send Feedback</span></a>
     </div>
     <script defer src="./assets/built/index.js"></script>
 </body>
