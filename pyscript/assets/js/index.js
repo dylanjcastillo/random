@@ -38,28 +38,51 @@ err_observer.observe(err, {
     subtree: true
 });
 
+const reshape = {
+    "Spread rows into columns": "df.pivot(index='iris_class",
+}
+const subset_cols = {
+    "Select a single column": "df['sepal_length']",
+    "Select multiple columns": "df[['sepal_length', 'sepal_width']]",
+    "Select columns using regex": "df.filter(regex='^petal')",
+}
+
+const subset_rows = {
+    "Using logical criteria": "df[(df.sepal_length == 6.4) & (df.sepal_width == 3.2)]",
+    "Find duplicates": "df[df.duplicated(keep=False)]",
+    "Drop duplicates": "df.drop_duplicates()",
+    "Rows with missing values": "df[df.isnull().any(axis=1)]",
+    "Rows without missing values": "df.dropna()",
+    "Sample of n rows": "df.sample(n=3)",
+    "First n rows": "df.head(3)",
+    "Last n rows": "df.tail(3)"
+}
+
 function get_operations(category) {
     let operations = ["Choose an operation"];
+    let ops_obj = {};
     if (category === "subset_rows") {
-        var cat_operations = ["Using logical criteria", "Drop duplicates", "Find duplicates", "Sample rows"]
+        ops_obj = subset_rows;
     }
-    operations = operations.concat(cat_operations);
+    if (category === "subset_cols") {
+        ops_obj = subset_cols;
+    }
+    for (var key in ops_obj) {
+        operations.push(key);
+    }
     return operations;
 }
 
-function get_sample_code(operation) {
-    if (operation === "Sample rows") {
-        return "df.sample(n=3)";
+function get_sample_code(category, operation) {
+
+    if (category === "subset_rows") {
+        return subset_rows[operation];
     }
-    if (operation === "Find duplicates") {
-        return "df[df.duplicated(keep=False)]";
+
+    if (category === "subset_cols") {
+        return subset_cols[operation];
     }
-    if (operation === "Drop duplicates") {
-        return "df.drop_duplicates()";
-    }
-    if (operation === "Using logical criteria") {
-        return "df[(df.sepal_length == 6.4) & (df.sepal_width == 3.2)]";
-    }
+
     return "";
 }
 
@@ -80,9 +103,10 @@ function update_categories() {
 }
 
 function update_repl() {
+    let category = document.getElementById("category");
     let operation = document.getElementById("operation");
 
-    let code_str = get_sample_code(operation.value);
+    let code_str = get_sample_code(category.value, operation.value);
 
     if (code_str != "") {
         document.getElementById("output-repl").remove();
