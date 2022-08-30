@@ -2,3 +2,4 @@
 .ipynb_checkpoints/
 */node_modules/
 pyscript/package-lock.json
+.venv/
